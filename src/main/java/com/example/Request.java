@@ -1,20 +1,27 @@
 package com.example;
 
 public class Request {
-    String url;
+    private String url;
+    private String path;
+    private String queryStr;
 
     public Request(String url) {
         this.url = url;
+        String[] urlBits = url.split("\\?", 2);
+        this.path = urlBits[0];
+
+        if (urlBits.length == 2) {
+            this.queryStr = urlBits[1];
+        }
     }
 
     public int getIntParam(String paramName, int defaultValue) {
-        String[] urlBits = url.split("\\?", 2);
-
-        if ( urlBits.length == 1 ) {
+        if (queryStr == null) {
             return defaultValue;
         }
 
-        urlBits = urlBits[1].split("&");
+        String[] urlBits = queryStr.split("&");
+
 
         for (String urlBit : urlBits) {
             String[] paramNameAndValue = urlBit.split("=", 2);
@@ -29,7 +36,14 @@ public class Request {
     }
 
     public String getPath() {
-        String[] urlBits = url.split("\\?", 2);
-        return urlBits[0];
+        return path;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getQueryStr() {
+        return queryStr;
     }
 }
