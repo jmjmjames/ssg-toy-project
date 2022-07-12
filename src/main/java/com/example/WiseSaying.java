@@ -13,11 +13,19 @@ public class WiseSaying {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"id\": " + id + "," +
-                "\"content\": \"" + content + "\"," +
-                "\"author\": \"" + author +  "\"" +
+        return "WiseSaying{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
                 '}';
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public int getId() {
