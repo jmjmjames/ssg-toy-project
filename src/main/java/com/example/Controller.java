@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -10,28 +11,25 @@ public class Controller {
         repository = new Repository();
     }
 
-
     public void write(Request request) {
         System.out.print("명언 : ");
         String content = sc.nextLine().trim();
         System.out.print("작가 : ");
         String author = sc.nextLine().trim();
 
-        int id = repository.getWiseSayingLastId() + 1;
-        repository.setWiseSayingLastId(id);
+        WiseSaying wiseSaying = repository.write(content, author);
 
-        WiseSaying wiseSaying = new WiseSaying(id, content, author);
-        repository.getWiseSayingList().add(wiseSaying);
-
-        System.out.printf("%d번 명언이 등록되었습니다.\n", id);
+        System.out.printf("%d번 명언이 등록되었습니다.\n", wiseSaying.getId());
     }
 
     public void list(Request request) {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("-------------------");
 
-        for (int i = repository.getWiseSayingList().size() - 1; i >= 0; i--) {
-            WiseSaying wiseSaying = repository.getWiseSayingList().get(i);
+        List<WiseSaying> wiseSayingList = repository.findAll();
+
+        for (int i = wiseSayingList.size() - 1; i >= 0; i--) {
+            WiseSaying wiseSaying = wiseSayingList.get(i);
             System.out.printf("%d / %s / %s%n", wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor());
         }
     }
@@ -57,10 +55,12 @@ public class Controller {
 
         System.out.printf("명언(기존) : %s\n", foundWiseSaying.getContent());
         System.out.printf("명언 : ");
-        foundWiseSaying.setContent(sc.nextLine());
+        String content = sc.nextLine();
         System.out.printf("작가(기존) : %s\n", foundWiseSaying.getAuthor());
         System.out.printf("작가 : ");
-        foundWiseSaying.setAuthor(sc.nextLine());
+        String author =sc.nextLine();
+
+        repository.modify(paramId, content, author);
 
         System.out.printf("%d번 명언이 수정되었습니다.\n", paramId);
     }
@@ -85,7 +85,7 @@ public class Controller {
         }
 
         // 입력된 id에 해당하는 명언객체를 리스트에서 삭제
-        repository.getWiseSayingList().remove(foundWiseSaying);
+        repository.remove(paramId);
 
         System.out.printf("%d번 명언이 삭제되었습니다.%n", paramId);
     }
