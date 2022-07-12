@@ -3,6 +3,8 @@ package com.example;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RequestTest {
@@ -25,10 +27,19 @@ class RequestTest {
     }
 
     @Test
-    public void getPath() {
+    void getPath() {
         Request request = new Request("삭제?id=1");
         String path = request.getPath();
 
         assertEquals("삭제", path);
+    }
+
+    @Test
+    void urlTest() {
+        Request request = new Request("삭제?id=1");
+        Map<String, String> map = request.getQueryParams();
+
+        assertTrue(map.containsKey("id"));
+        assertEquals(map.get("id"), "1");
     }
 }
