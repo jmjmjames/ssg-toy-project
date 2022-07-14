@@ -149,3 +149,4 @@ Temporary Items
 *.icloud
 
 target/**
+/prod_data/wise_saying/
