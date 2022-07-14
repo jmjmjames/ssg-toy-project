@@ -33,7 +33,7 @@ public class WiseSayingService {
     public void dumpToJson() {
         List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
 
-        String json = "[\n\t" + wiseSayings
+        String json = "[\n   " + wiseSayings
                 .stream()
                 .map(WiseSaying::toJson)
                 .collect(Collectors.joining(", ")) + "\n]";
