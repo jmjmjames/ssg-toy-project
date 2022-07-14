@@ -5,9 +5,14 @@ import java.util.Scanner;
 public class App {
 
     private final Scanner sc;
+    public static String mode = "prod";
 
     public App(Scanner sc) {
         this.sc = sc;
+    }
+
+    public static String getBaseDir() {
+        return mode + "_data";
     }
 
     public void run() {
@@ -24,10 +29,10 @@ public class App {
             Rq rq = new Rq(cmd);
             switch (rq.getPath()) {
                 case "등록":
-                    controller.write(rq);
+                    controller.write();
                     break;
                 case "목록":
-                    controller.list(rq);
+                    controller.list();
                     break;
                 case "수정":
                     controller.modify(rq);
@@ -35,8 +40,12 @@ public class App {
                 case "삭제":
                     controller.remove(rq);
                     break;
+                case "빌드":
+                    controller.build();
+                    break;
                 case "종료":
                     break outer;
+
             }
         }
         sc.close();
