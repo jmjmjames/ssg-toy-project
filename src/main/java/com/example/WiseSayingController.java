@@ -12,7 +12,7 @@ public class WiseSayingController {
         wiseSayingService = new WiseSayingService();
     }
 
-    public void write(Rq rq) {
+    public void write() {
         System.out.print("명언 : ");
         String content = sc.nextLine();
         System.out.print("작가 : ");
@@ -23,7 +23,7 @@ public class WiseSayingController {
         System.out.printf("%d번 명언이 등록되었습니다.%n", wiseSaying.getId());
     }
 
-    public void list(Rq rq) {
+    public void list() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
 
@@ -82,5 +82,9 @@ public class WiseSayingController {
         wiseSayingService.remove(wiseSaying.getId());
 
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+    }
+
+    public void build() {
+        wiseSayingService.dumpToJson();
     }
 }
