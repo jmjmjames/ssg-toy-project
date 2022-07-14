@@ -120,4 +120,26 @@ public class FileDBTest {
 
         assertEquals("내용\n내용", rs);
     }
+
+    @Test
+    void 추출() {
+        String s = Util.File.readFromFile("./prod_data/test");
+
+        String s1 = s.replace("\"id\":", "");
+        String s2 = s1.replace("\"content\":\"", "");
+        String s3 = s2.replace("\"author\":\"", "");
+        String s4 = s3.replaceAll("[\\{\\,\\}\"]", "");
+        String trim = s4.trim();
+
+
+//        System.out.println("s3 = " + s3);
+        System.out.println("s = " + trim);
+        Util.File.saveToFile("./prod_data/init", trim);
+    }
+
+    @Test
+    void 등록() {
+        String s = Util.File.readFromFile("./prod_data/init");
+        AppTestRunner.run(s);
+    }
 }

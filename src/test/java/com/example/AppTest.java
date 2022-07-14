@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
 
+
     @Test
     public void 등록_후_목록에서_확인할_수_있어야_한다() {
         String rs = AppTestRunner.run("""
