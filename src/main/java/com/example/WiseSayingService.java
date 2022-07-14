@@ -33,10 +33,10 @@ public class WiseSayingService {
     public void dumpToJson() {
         List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
 
-        String json = "[\n   " + wiseSayings
+        String json = "[\n" + wiseSayings
                 .stream()
                 .map(WiseSaying::toJson)
-                .collect(Collectors.joining(", ")) + "\n]";
+                .collect(Collectors.joining(",\n")) + "\n]";
 
         Util.File.saveToFile("%s/data.json".formatted(App.getBaseDir()), json);
     }
