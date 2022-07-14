@@ -3,12 +3,12 @@ package com.example;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Request {
-    private String url;
-    private String path;
-    private Map<String, String> queryParams;
+public class Rq {
+    private final String url;
+    private final String path;
+    private final Map<String, String> queryParams;
 
-    public Request(String url) {
+    public Rq(String url) {
         this.url = url;
         String[] urlBits = url.split("\\?", 2);
         this.path = urlBits[0];
@@ -51,13 +51,5 @@ public class Request {
 
     public String getPath() {
         return path;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public Map<String, String> getQueryParams() {
-        return queryParams;
     }
 }
