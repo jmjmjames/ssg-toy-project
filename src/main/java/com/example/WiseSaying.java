@@ -3,7 +3,7 @@ package com.example;
 import java.util.Map;
 
 public class WiseSaying {
-    private int id;
+    private final int id;
     private String content;
     private String author;
 
@@ -41,26 +41,6 @@ public class WiseSaying {
                 .trim();
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,6 +61,26 @@ public class WiseSaying {
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
 
