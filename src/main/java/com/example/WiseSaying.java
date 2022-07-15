@@ -19,15 +19,6 @@ public class WiseSaying {
         this.author = (String) map.get("author");
     }
 
-    @Override
-    public String toString() {
-        return "WiseSaying{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", author='" + author + '\'' +
-                '}';
-    }
-
     public String toJson() {
         return """
                 {
