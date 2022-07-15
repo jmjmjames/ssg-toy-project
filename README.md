@@ -1,6 +1,6 @@
 # ssg-toy-project
 
-## [오늘의 명언](https://codepen.io/chungjm/pen/yLKVMBw?editors=1010)
+## [오늘의 명언](https://quote-of-day7.netlify.app/)
 
 ## 명령어
 등록:
