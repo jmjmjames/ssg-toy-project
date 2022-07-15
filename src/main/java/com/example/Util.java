@@ -38,27 +38,19 @@ public class Util {
         }
 
         public static String readFromFile(String path) {
-
-            String defaultValue = "";
-
             try (RandomAccessFile reader = new RandomAccessFile(path, "r")) {
-                StringBuilder sb = new StringBuilder();
-                String line;
-                boolean isFirst = true;
+                StringBuilder body = new StringBuilder();
 
+                String line = null;
                 while ((line = reader.readLine()) != null) {
-                    if (!isFirst) {
-                        sb.append("\n");
-                    }
-                    sb.append(new String(line.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-                    isFirst = false;
+                    body.append(new String(line.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
                 }
-                return sb.toString();
-            } catch (FileNotFoundException e) {
-                return defaultValue;
+
+                return body.toString();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
+            return "";
         }
 
         public static void deleteDir(String path) {
@@ -91,7 +83,8 @@ public class Util {
                 return stream
                         .filter(file -> !Files.isDirectory(file))
                         .map(Path::getFileName)
-                        .map(Path::toString).sorted()
+                        .map(Path::toString)
+                        .sorted()
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 return new ArrayList<>();
@@ -101,7 +94,6 @@ public class Util {
 
     public static class Json {
         public static Map<String, Object> jsonToMap(String path) {
-
             String json = File.readFromFile(path);
 
             if (json.isEmpty()) {
