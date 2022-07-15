@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Rq {
-    private final String url;
     private final String path;
     private final Map<String, String> queryParams;
 
     public Rq(String url) {
-        this.url = url;
         String[] urlBits = url.split("\\?", 2);
         this.path = urlBits[0];
 
